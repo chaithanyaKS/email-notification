@@ -1,7 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react"
 import { marked } from "marked"
 
-interface Param {
+export interface Param {
   position: [number, number]
   name: string
 }
@@ -46,16 +46,16 @@ const Editor = ({ state, setData, regex }: EditorProps) => {
   }
 
   return (
-    <div className=" p-4 w-1/2 h-full bg-white rounded-md shadow-md">
+    <div className="flex flex-col p-4 w-1/3 bg-white rounded-md shadow-md">
       <div className="flex justify-between items-center mb-2">
-        <h1 className="text-md font-medium">Compose Email</h1>
-        <button className="bg-blue-400 text-white px-5 py-1 rounded-md">
+        <h1 className="text-2xl font-medium text-black">Compose Email</h1>
+        <button className="bg-blue-700 text-white px-5 py-1 rounded-md">
           Save
         </button>
       </div>
       <textarea
         name="editor"
-        className="h-[50vh] bg-slate-200 w-full resize-none border-0 focus-visible:outline-none p-5 rounded-md shadow-md"
+        className="bg-sky-100 flex-grow w-full resize-none border-0 focus-visible:outline-none p-5 rounded-md shadow-md"
         value={state.body}
         onChange={handleEditorChange}
       />

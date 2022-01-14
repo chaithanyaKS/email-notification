@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html,
-      body,
-      body > div:first-child,
-      div#__next {
-        height: 100vh;
-        width: 100vw;
-      }
+body,
+body > div:first-child,
+div#__next {
+  height: 100vh;
+  width: 100vw;
+  background-color: blue;
+}

@@ -3,7 +3,8 @@ import Head from "next/head"
 import Image from "next/image"
 import { useState } from "react"
 import Editor, { EditorState } from "../components/Editor/Editor"
-import MarkDownPreview from "../components/MarkDownPreview/MarkDownPreview"
+import Preview from "../components/MarkDownPreview/MarkDownPreview"
+import MetaDataPreview from "../components/MetaDataPreview/MetaDataPreview"
 
 const Home: NextPage = () => {
   const DEFAULT_REGEX = /\$\{{(\S*?)}}/g
@@ -14,22 +15,24 @@ const Home: NextPage = () => {
   })
 
   return (
-    <div className="min-h-screen min-w-screen bg-stone-100">
+    <div className="flex flex-col h-full min-w-screen bg-blue-50">
       <h1 className="text-4xl font-semibold text-center">Email Notification</h1>
-      <div className="min-h-screen h-full gap-4 p-8 flex">
+      <div className="gap-4 p-8 flex flex-grow">
         <Editor
           state={editorData}
           setData={setEditorData}
           regex={DEFAULT_REGEX}
         />
-        <div
-          id="preview"
-          className="w-1/2 h-[60vh] bg flex flex-col gap-8 rounded-md "
-        >
-          <MarkDownPreview data={editorData} />
+        <div id="preview" className="w-1/3 bg flex flex-col gap-8 rounded-md ">
+          <Preview data={editorData} />
+        </div>
+        <div id="preview" className="w-1/3 bg flex flex-col gap-8 rounded-md ">
+          <MetaDataPreview
+            count={editorData.param_count}
+            params={editorData.params}
+          />
         </div>
       </div>
-      <div></div>
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react"
-import { marked } from "marked"
 
 export interface Param {
   position: [number, number]

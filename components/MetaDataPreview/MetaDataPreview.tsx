@@ -17,7 +17,10 @@ const MetaDataPreview = ({ count, params }: MetaDataPreviewProps) => {
         {/* {JSON.stringify(params, null, 2)} */}
         <div className="flex gap-2 flex-wrap">
           {params.map((param) => (
-            <div className="bg-sky-700 inline-block px-3 py-1 rounded-md text-white">
+            <div
+              key={param.position[0]}
+              className="bg-sky-700 inline-block px-3 py-1 rounded-md text-white"
+            >
               <p>
                 <span className="capitalize">name:</span> {param.name}
               </p>

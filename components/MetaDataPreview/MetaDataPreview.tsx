@@ -1,8 +1,8 @@
-import { Param } from "../Editor/Editor"
+import { Variables } from "../../pages"
 
 interface MetaDataPreviewProps {
   count: number
-  params: Param[]
+  params: Variables[]
 }
 const MetaDataPreview = ({ count, params }: MetaDataPreviewProps) => {
   return (
@@ -16,21 +16,19 @@ const MetaDataPreview = ({ count, params }: MetaDataPreviewProps) => {
         <span className="capitalize">params:</span>
         {/* {JSON.stringify(params, null, 2)} */}
         <div className="flex gap-2 flex-wrap">
-          {params.map((param) => (
+          {params.map((param, id) => (
             <div
-              key={param.position[0]}
+              key={id}
               className="bg-sky-700 inline-block px-3 py-1 rounded-md text-white"
             >
               <p>
                 <span className="capitalize">name:</span> {param.name}
               </p>
               <p>
-                <span className="capitalize">start index:</span>{" "}
-                {param.position[0]}
+                <span className="capitalize">Offset: </span> {param.offset}
               </p>
               <p>
-                <span className="capitalize">end index:</span>{" "}
-                {param.position[1]}
+                <span className="capitalize">Length: </span> {param.length}
               </p>
             </div>
           ))}

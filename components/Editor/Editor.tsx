@@ -34,8 +34,8 @@ const Editor = ({ state, setData, regex, setPreviewData }: EditorProps) => {
     }))
 
     let previewBody = currentData
-    previewBody = previewBody.replaceAll("${{", "_${{")
-    previewBody = previewBody.replaceAll("}}", "}}_")
+    previewBody = previewBody.replace(/\${{/g, "_${{")
+    previewBody = previewBody.replace(/}}/g, "}}_")
 
     setPreviewData((prevState) => ({
       ...prevState,

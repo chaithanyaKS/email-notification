@@ -47,7 +47,14 @@ Regards,
     subject: "",
   })
 
-  const [previewData, setPreviewData] = useState(template)
+  let previewBody = template.body
+  previewBody = previewBody.replaceAll("${{", "_${{")
+  previewBody = previewBody.replaceAll("}}", "}}_")
+
+  const [previewData, setPreviewData] = useState({
+    ...template,
+    body: previewBody,
+  })
 
   return (
     <div className="flex flex-col h-full min-w-screen pt-6 bg-blue-100">
@@ -76,6 +83,7 @@ Regards,
           <DynamicInputs
             templateData={template}
             setTemplateData={setPreviewData}
+            setPreviewData={setPreviewData}
           />
         </div>
       </div>

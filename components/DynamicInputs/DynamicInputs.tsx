@@ -13,10 +13,12 @@ import { Template } from "../../pages"
 interface DynamicInputsProps {
   templateData: Template
   setTemplateData: Dispatch<SetStateAction<Template>>
+  setPreviewData: Dispatch<SetStateAction<Template>>
 }
 const DynamicInputs = ({
   templateData,
   setTemplateData,
+  setPreviewData,
 }: DynamicInputsProps) => {
   const [uniqueVars, setUniqueVars] = useState<string[]>([])
   const [updatedUniqueVars, setUpdatedUniqueVars] = useState<string[]>([])
@@ -50,7 +52,7 @@ const DynamicInputs = ({
     if (target.value === "") {
       updatedValue = templateData.body.replaceAll(
         regex,
-        `\${{${dynamicInputString}}}`
+        `_\${{${dynamicInputString}}}_`
       )
     } else {
       updatedValue = templateData.body.replaceAll(regex, `_${target.value}_`)

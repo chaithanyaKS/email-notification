@@ -5,9 +5,10 @@ import { Variables, Template } from "../../pages"
 interface EditorProps {
   state: Template
   setData: Dispatch<SetStateAction<Template>>
+  setPreviewData: Dispatch<SetStateAction<Template>>
   regex: RegExp
 }
-const Editor = ({ state, setData, regex }: EditorProps) => {
+const Editor = ({ state, setData, regex, setPreviewData }: EditorProps) => {
   const inputRef = createRef<HTMLInputElement>()
   const handleEditorChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const currentData = e.target.value
@@ -28,6 +29,18 @@ const Editor = ({ state, setData, regex }: EditorProps) => {
       ...prevState,
       params,
       body: currentData,
+      param_count: parsedData.length,
+      subject: inputRef?.current?.value ?? "",
+    }))
+
+    let previewBody = currentData
+    previewBody = previewBody.replaceAll("${{", "_${{")
+    previewBody = previewBody.replaceAll("}}", "}}_")
+
+    setPreviewData((prevState) => ({
+      ...prevState,
+      params,
+      body: previewBody,
       param_count: parsedData.length,
       subject: inputRef?.current?.value ?? "",
     }))

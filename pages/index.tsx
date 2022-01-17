@@ -30,8 +30,8 @@ const Home: NextPage = () => {
   })
 
   let previewBody = template.body
-  previewBody = previewBody.replaceAll("${{", "_${{")
-  previewBody = previewBody.replaceAll("}}", "}}_")
+  previewBody = previewBody.replace(/\${{/g, "_${{")
+  previewBody = previewBody.replace(/}}/g, "}}_")
 
   const [previewData, setPreviewData] = useState({
     ...template,

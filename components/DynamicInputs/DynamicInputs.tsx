@@ -50,12 +50,12 @@ const DynamicInputs = ({
     const regex = new RegExp(`\\\${{${dynamicInputString}}}`, "g")
     let updatedValue = ""
     if (target.value === "") {
-      updatedValue = templateData.body.replaceAll(
+      updatedValue = templateData.body.replace(
         regex,
         `_\${{${dynamicInputString}}}_`
       )
     } else {
-      updatedValue = templateData.body.replaceAll(regex, `_${target.value}_`)
+      updatedValue = templateData.body.replace(regex, `_${target.value}_`)
     }
     setTemplateData((prevState) => ({ ...prevState, body: updatedValue }))
   }

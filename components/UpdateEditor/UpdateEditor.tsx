@@ -37,10 +37,15 @@ const UpdateEditor = ({
       param_count: parsedData.length,
       subject: inputRef?.current?.value ?? "",
     }))
+
+    let previewBody = currentData
+    previewBody = previewBody.replaceAll("${{", "_${{")
+    previewBody = previewBody.replaceAll("}}", "}}_")
+
     setPreviewData((prevState) => ({
       ...prevState,
       params,
-      body: currentData,
+      body: previewBody,
       param_count: parsedData.length,
       subject: inputRef?.current?.value ?? "",
     }))

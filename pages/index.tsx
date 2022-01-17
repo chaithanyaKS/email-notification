@@ -29,6 +29,15 @@ const Home: NextPage = () => {
     subject: "",
   })
 
+  let previewBody = template.body
+  previewBody = previewBody.replaceAll("${{", "_${{")
+  previewBody = previewBody.replaceAll("}}", "}}_")
+
+  const [previewData, setPreviewData] = useState({
+    ...template,
+    body: previewBody,
+  })
+
   return (
     <div className="flex flex-col h-full min-w-screen pt-6 bg-blue-100">
       <h1 className="text-4xl font-semibold text-center">
@@ -47,9 +56,10 @@ const Home: NextPage = () => {
           state={template}
           setData={setEditorData}
           regex={DEFAULT_REGEX}
+          setPreviewData={setPreviewData}
         />
         <div id="preview" className="w-1/3 bg flex flex-col gap-8 rounded-md ">
-          <Preview data={template} />
+          <Preview data={previewData} />
         </div>
         <div id="preview" className="w-1/3 bg flex flex-col gap-8 rounded-md ">
           <MetaDataPreview
